@@ -107,7 +107,7 @@ in {
 
     time.timeZone = lib.mkDefault "America/Sao_Paulo";
 
-    users.groups.wifi_controller = lib.mkIf cfg.enableWpaSupplicant lib.mkDefault { };
+    users.groups.wifi_controller = lib.mkIf cfg.enableWpaSupplicant (lib.mkDefault { });
 
     users.users."${cfg.username}" = {
       isNormalUser = true;
