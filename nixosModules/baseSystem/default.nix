@@ -111,7 +111,11 @@ in {
 
     users.users."${cfg.username}" = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ] ++ cfg.extraUserGroups ++ (lib.mkIf cfg.enableWpaSupplicant [ "wpa_supplicant" ]);
+      extraGroups = lib.mkMerge [
+        [ "wheel" ]
+        cfg.extraUserGroups
+        (lib.lists.optionals cfg.enableWpaSupplicant [ "wpa_supplicant" ])
+      ];
       packages = lib.mkMerge [
         cfg.defaultUserPackages
         cfg.extraUserPackages
