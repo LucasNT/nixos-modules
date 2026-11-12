@@ -115,8 +115,7 @@ in {
       packages = lib.mkMerge [
         cfg.defaultUserPackages
         cfg.extraUserPackages
-        (lib.lists.optionals cfg.addAllPackgesForNvim
-          (with pkgs; [ nodejs python3 gcc gnumake unzip go cargo nil ]))
+        [ pkgs.helix ]
       ];
       openssh.authorizedKeys.keys = cfg.userAuthrorizedKeys;
     };
